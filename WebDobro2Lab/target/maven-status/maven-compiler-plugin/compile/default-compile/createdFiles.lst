@@ -1,0 +1,10 @@
+servlets/AreaCheckServlet.class
+beans/ResultStorage.class
+graph/Point.class
+graph/PointFactory.class
+graph/HitValidator.class
+utilities/Validator.class
+utilities/ParsedRequest.class
+servlets/ControllerServlet.class
+beans/ResultStorage$Result.class
+utilities/RequestParser.class
