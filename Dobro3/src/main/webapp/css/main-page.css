@@ -1,0 +1,338 @@
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: 100px;
+    padding: 20px;
+    background-color: #ffffff; /* Белый фон */
+    color: #212227; /* Цвет текста */
+}
+
+header {
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #ffffff; /* Белый фон */
+    border-radius: 10px;
+}
+
+header h1 {
+    font-size: 3.5em;
+    color: #212227; /* Цвет текста */
+    margin-bottom: 15px;
+}
+
+header p {
+    font-size: 1.5em;
+    color: #212227; /* Цвет текста */
+    margin: 5px 0;
+}
+
+header:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    border-bottom: 2px dotted #212227; /* Цвет линии */
+    margin-top: 10px;
+}
+#timer-container {
+    display: flex;
+    justify-content: center; /* Центровка по горизонтали */
+    align-items: center; /* Центровка по вертикали */
+    height: 30vh; /* Занимает всю высоту окна */
+    background-color: #ffffff; /* Белый фон */
+}
+
+#timer-container > div {
+    padding: 20px 40px;
+    border: 3px solid #212227; /* Скругленная рамка */
+    border-radius: 15px; /* Скругление углов */
+    text-align: center;
+}
+
+#timer {
+    font-size: 3em; /* Размер цифр */
+    font-weight: bold; /* Жирный шрифт */
+    font-family: 'Roboto Condensed', sans-serif;
+    background: linear-gradient(90deg, #a61c3c, #7c2e40, #e15b75); /* Градиент для цифр */
+    -webkit-background-clip: text; /* Обрезка фона под текст */
+    -webkit-text-fill-color: transparent; /* Прозрачный цвет текста */
+}
+.centered-button {
+    display: flex;
+    justify-content: center; /* Центровка по горизонтали */
+    align-items: center;
+    margin-top: 20px; /* Отступ сверху (под таймером) */
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 30px; /* Размер кнопки */
+    border: none; /* Убираем стандартную рамку */
+    border-radius: 25px; /* Скругленные края */
+    background-color: #212227; /* Цвет кнопки */
+    color: #ffffff; /* Цвет текста */
+    font-size: 1.2em; /* Размер текста */
+    font-weight: bold; /* Жирный текст */
+    font-family: 'Roboto Condensed', sans-serif;
+    cursor: pointer; /* Указатель при наведении */
+    transition: transform 0.2s ease, background 0.3s ease; /* Анимация при наведении */
+    text-align: center; /* Выравнивание текста по центру */
+}
+
+.button:hover {
+    transform: scale(1.1); /* Увеличение при наведении */
+    background: linear-gradient(90deg, #a61c3c, #7c2e40, #e15b75); /* Градиент при наведении */
+}
+
+.navigation-button {
+    display: inline-block;
+    padding: 15px 25px; /* Размер кнопки */
+    border: none; /* Убираем стандартную рамку */
+    border-radius: 30px; /* Скругленные края */
+    background-color: #212227; /* Цвет кнопки */
+    color: #ffffff; /* Цвет текста */
+    font-size: 1.4em; /* Размер текста */
+    font-weight: bold; /* Жирный текст */
+    font-family: 'Roboto Condensed', sans-serif;
+    cursor: pointer; /* Указатель при наведении */
+    transition: transform 0.2s ease, background 0.3s ease; /* Анимация при наведении */
+    text-align: center; /* Выравнивание текста по центру */
+}
+
+.navigation-button:hover {
+    transform: scale(1.1); /* Увеличение при наведении */
+    background: linear-gradient(90deg, #a61c3c, #7c2e40, #e15b75); /* Градиент при наведении */
+}
+.knopka {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 30px; /* Отступ сверху */
+    left: 50px; /* Отступ слева */
+    padding: 15px 30px; /* Размер кнопки */
+    border: none; /* Убираем стандартную рамку */
+    border-radius: 25px; /* Скругленные края */
+    background-color: #212227; /* Цвет кнопки */
+    color: #ffffff; /* Цвет текста */
+    font-size: 1.2em; /* Размер текста */
+    font-weight: bold; /* Жирный текст */
+    font-family: 'Roboto Condensed', sans-serif;
+    cursor: pointer; /* Указатель при наведении */
+    transition: transform 0.2s ease, background 0.3s ease; /* Анимация при наведении */
+    text-align: center; /* Выравнивание текста по центру */
+    z-index: 1000; /* Приоритет кнопки над остальными элементами */
+}
+
+.knopka:hover {
+    transform: scale(1.1); /* Увеличение при наведении */
+    background: linear-gradient(90deg, #a61c3c, #7c2e40, #e15b75); /* Градиент при наведении */
+}
+
+
+.radio-group {
+    display: flex;
+    justify-content: center; /* Центровка радио кнопок по горизонтали */
+    margin-top: 20px;
+}.xForm {
+     display: flex; /* Использование flex для горизонтального выравнивания */
+     justify-content: flex-start; /* Выравнивание элементов по левому краю */
+     position: relative;
+     margin: 0 10px; /* Отступ между кнопками */
+ }
+
+.xForm input[type="radio"] {
+    display: none; /* Скрываем стандартные радио кнопки */
+}
+
+.xForm label {
+    display: inline-block;
+    padding: 10px 20px; /* Размер кнопки */
+    background-color: #ffffff; /* Белый фон */
+    border: 2px solid #212227; /* Граница цвета #212227 */
+    border-radius: 50%; /* Округлые края */
+    font-size: 1.2em; /* Размер цифр */
+    font-weight: bold; /* Жирный текст */
+    color: #212227; /* Цвет текста */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Плавные анимации */
+    margin-right: 10px; /* Отступ между кнопками */
+}
+
+.xForm input[type="radio"]:checked + label {
+    background-color: #a61c3c; /* Цвет фона при нажатии */
+    color: #ffffff; /* Цвет текста при нажатии */
+    transform: scale(1.1); /* Увеличение кнопки при нажатии */
+}
+
+.xForm label:hover {
+    background-color: #f2f4f3; /* Светлый фон при наведении */
+}
+
+.yForm {
+    width: 100%; /* Занимает всю доступную ширину */
+    padding: 10px; /* Отступы внутри поля */
+    border: 2px solid #212227; /* Цвет рамки */
+    border-radius: 15px; /* Скругленные углы */
+    background-color: white; /* Белый фон */
+    font-size: 1.2em; /* Размер шрифта */
+    color: #212227; /* Цвет текста */
+    transition: border-color 0.3s ease; /* Плавный переход для рамки */
+}
+
+.yForm::placeholder {
+    color: #aaa; /* Цвет для текста placeholder */
+    font-size: 1.2em; /* Размер шрифта */
+    font-style: italic; /* Курсив */
+}
+
+.yForm:focus {
+    border-color: #a61c3c; /* Цвет рамки при фокусе */
+    outline: none; /* Убираем стандартный фокус */
+}
+
+.yForm:invalid {
+    border-color: red; /* Красная рамка для неправильного ввода */
+}
+
+.bold-text {
+    font-weight: bold; /* Жирный текст для метки */
+    font-size: 1.2em;
+    color: #212227; /* Цвет текста */
+}
+
+/* Стили для поля ввода */
+.rForm {
+    width: 50px;
+    height: 30px;
+    border-radius: 10px;
+    border: 2px solid #212227;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #212227;
+    background-color: white;
+}
+
+/* Контейнер слайдера */
+.rSli {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Слайдер (линия до бегунка) */
+.ui-slider-range {
+    background-color: #a61c3c !important; /* Цвет заполненной части */
+    height: 4px; /* Толщина линии */
+}
+
+/* Слайдер (линия после бегунка) */
+.ui-slider {
+    background-color: #212227 !important; /* Цвет незаполненной части */
+    height: 4px; /* Толщина линии */
+    border-radius: 2px; /* Скругленные края линии */
+}
+
+/* Бегунок */
+.ui-slider-handle {
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50%; /* Делает бегунок круглым */
+    background-color: #ffffff !important; /* Белый цвет внутри */
+    border: 2px solid #212227 !important; /* Черный контур */
+    cursor: pointer; /* Указатель курсора */
+}
+
+/* Анимация при перетаскивании */
+.ui-slider-handle:active {
+    transform: scale(1.1); /* Увеличение при удерживании */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+
+#results {
+    margin-top: 20px;
+}
+
+.table {
+    width: 100%;
+    max-width: 1200px;
+    max-height: 500px;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 2px solid #212227;
+    border-radius: 10px;
+}
+
+.table th, .table td {
+    border: 1px solid #212227;
+    padding: 19px;
+    text-align: center;
+    font-size: 1.7em;
+}
+
+.table th {
+    background-color: #212227;
+    color: white;
+}
+
+.table td {
+    background-color: #f2f4f3;
+    color: #212227;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+#graph-canvas {
+    border: 1px solid #212227;
+    background-color: #f2f4f3;
+    width: 700px;
+    height: 700px;
+    border-radius: 10px;
+}
+
+.axis-label {
+    font-weight: bold;
+    font-size: 3em;
+    fill: #212227;
+}
+.centered-heading {
+    text-align: center;
+    font-size: 2.6em;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-rows: 7% 80% 3% 10%;
+    height: 100vh;
+    gap: 10px;
+}
+
+/* Горизонтальное деление для блоков */
+.block-1 {
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.block-2 {
+    display: grid;
+    grid-template-columns: 55% 10% 35%;
+    gap: 10px;
+}
+
+.block-3, .block-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+/* Пример общего оформления для блоков */
+.block {
+    border: 1px solid #ccc;
+    padding: 10px;
+}

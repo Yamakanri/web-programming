@@ -1,0 +1,35 @@
+networks:
+
+  macbook:
+    driver: bridge
+volumes:
+  pgdata:
+
+services:
+  database:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    networks:
+      - macbook
+
+
+  wildfly:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:8080"
+      - "9990:9990"
+    environment:
+      - POSTGRESQL_USER=myuser
+      - POSTGRESQL_PASSWORD=mypassword
+      - POSTGRESQL_DATABASE=mydatabase
+    depends_on:
+      - database
+    networks:
+      - macbook

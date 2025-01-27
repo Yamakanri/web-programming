@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Проверка попадания точки</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/main-page.css"/>
+</h:head>
+
+
+<h:body>
+    <div class="grid-container">
+        <div class="container">
+            <!-- Первый вертикальный блок -->
+            <div class="block-1 block">
+                <h:form>
+                    <h:commandButton value="ПЕРЕЙТИ НА СТАРТОВУЮ СТРАНИЦУ" action="index" styleClass="knopka" />
+                </h:form>
+            </div>
+
+            <!-- Второй вертикальный блок -->
+            <div class="block-2 block">
+                <div> <canvas id="graph-canvas" width="600" height="600"></canvas></div>
+                <div></div>
+                <div> <h:form id="results">
+                    <h3 class="centered-heading">РЕЗУЛЬТАТЫ ПРЕДЫДУЩИХ ЗАПРОСОВ</h3>
+                    <p:dataTable value="#{TableControllerBean.points}" var="point" id="table" styleClass="table">
+                        <p:column headerText="X" style="text-align: center;">
+                            <h:outputText value="#{point.x}" />
+                        </p:column>
+                        <p:column headerText="Y" style="text-align: center;">
+                            <h:outputText value="#{point.y}" />
+                        </p:column>
+                        <p:column headerText="R" style="text-align: center;">
+                            <h:outputText value="#{point.r}" />
+                        </p:column>
+                        <p:column headerText="Попал?" style="text-align: center;">
+                            <h:outputText value="#{point.isHit ? 'Да' : 'Нет'}" style="color: #{point.getIsHit() ? 'green' : 'red'}" />
+                        </p:column>
+                        <p:column headerText="Время" style="text-align: center;">
+                            <h:outputText value="#{point.time}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form></div>
+            </div>
+
+            <!-- Третий вертикальный блок -->
+            <div class="block-3 block">
+                <div>Введите X</div>
+                <div>Введите Y</div>
+                <div>Введите R</div>
+                <div></div>
+            </div>
+
+            <!-- Четвёртый вертикальный блок -->
+            <div class="block-4 block">
+                <h:form id="point-form" class="point-form">
+                    <div>
+                        <div class="form-group">
+
+                            <div class="form-input">
+                                <p:spinner id="x-spinner" value="#{FormControllerBean.userX}" min="-4" max="4" step="0.5" styleClass="x-spinner">
+                                    <f:ajax render="@form" oncomplete="updateGraph();" />
+                                </p:spinner>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+
+                            <div class="form-input">
+                                <h:inputText id="y-value" class="y-value" value="#{FormControllerBean.userY}" required="true"
+                                             requiredMessage="Введите Y"
+                                             title="Введите значение от -5 до 3"
+                                             validatorMessage="Y должен быть числом от -5 до 3"
+                                             styleClass="yForm" placeholder="от -5 до 3"
+                                             oninput="limitYValue(this)" onblur="limitYValueOnBlur(this)">
+                                </h:inputText>
+                                <h:message for="y-value" style="color:red" />
+                                <script>
+                                    function limitYValue(input) {
+                                        let value = parseFloat(input.value);
+                                        if (value > 3) {
+                                            input.value = 3;  // Если значение больше 3, ограничиваем до 3
+                                        } else if (value &lt; -5) {
+                                            input.value = -5;  // Если значение меньше -5, ограничиваем до -5
+                                        }
+                                    }
+
+                                    function limitYValueOnBlur(input) {
+                                        let value = parseFloat(input.value);
+                                        // Если значение больше 3, округляем до 3 при выходе из поля
+                                        if (value > 3) {
+                                            input.value = 3;
+                                        } else if (value &lt; -5) {
+                                            input.value = -5;  // Если меньше -5, округляем до -5
+                                        }
+                                    }
+                                </script>
+                            </div>
+                        </div></div>
+                    <div><div class="form-group">
+                        <div class="form-input">
+                            <h:panelGroup>
+                                <h:commandLink value="1" action="#{FormControllerBean.setUserR(1)}" onclick="updateGraph(1);">
+                                    <f:ajax render="@form" />
+                                </h:commandLink>
+                                <h:outputText value=" | " />
+                                <h:commandLink value="1.5" action="#{FormControllerBean.setUserR(1.5)}" onclick="updateGraph(1.5);">
+                                    <f:ajax render="@form" />
+                                </h:commandLink>
+                                <h:outputText value=" | " />
+                                <h:commandLink value="2" action="#{FormControllerBean.setUserR(2)}" onclick="updateGraph(2);">
+                                    <f:ajax render="@form" />
+                                </h:commandLink>
+                                <h:outputText value=" | " />
+                                <h:commandLink value="2.5" action="#{FormControllerBean.setUserR(2.5)}" onclick="updateGraph(2.5);">
+                                    <f:ajax render="@form"  />
+                                </h:commandLink>
+                                <h:outputText value=" | " />
+                                <h:commandLink value="3" action="#{FormControllerBean.setUserR(3)}" onclick="updateGraph(3);">
+                                    <f:ajax render="@form"  />
+                                </h:commandLink>
+                                <h:inputHidden id="radiusValue" value="#{FormControllerBean.userR}" />
+                            </h:panelGroup>
+                        </div>
+                    </div></div>
+                    <div><div class="centered-button">
+                        <h:commandButton class="button" value="ОТПРАВИТЬ" action="#{FormControllerBean.checkAndUpload()}" styleClass="custom-button">
+                            <f:ajax execute="@form" render=":results" />
+                        </h:commandButton>
+                    </div></div>
+                </h:form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+
+
+
+
+
+
+
+        <h:form id="checkForm">
+            <h:inputHidden id="hiddenX" value="#{FormControllerBean.userX}" />
+            <h:inputHidden id="hiddenY" value="#{FormControllerBean.userY}" />
+            <h:inputHidden id="hiddenR" value="#{FormControllerBean.userR}" />
+
+            <h:commandButton id="checkButton" action="#{FormControllerBean.checkAndUpload()}" style="display:none">
+                <f:ajax execute="@form" render=":results" />
+            </h:commandButton>
+        </h:form>
+
+        <script src="javaScript/canvas.js"></script>
+        <script src="javaScript/scripts.js"></script>
+    </div>
+</h:body>
+</html>
